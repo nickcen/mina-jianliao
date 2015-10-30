@@ -28,6 +28,7 @@ namespace :jianliao do
       announcement = "#{announced_deployer} successfully deployed #{announced_application_name} in #{elapsed} seconds."
 
       post_jianliao_message(announcement)
+      print_local_status "send Jianliao Announcement"
     else
       print_local_status "Unable to create Jianliao Announcement, no jianliao details provided."
     end
