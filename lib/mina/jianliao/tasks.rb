@@ -28,7 +28,6 @@ namespace :jianliao do
       announcement = "#{announced_deployer} successfully deployed #{announced_application_name} in #{elapsed} seconds."
 
       post_jianliao_message(announcement)
-      print_local_status "send Jianliao Announcement"
     else
       print_local_status "Unable to create Jianliao Announcement, no jianliao details provided."
     end
@@ -49,8 +48,8 @@ namespace :jianliao do
     uri = URI('https://jianliao.com/v2/services/webhook/d797f4bacfb3c8a47490cbacc777ae974d41f210')
 
     payload = {
-      "username"    => jianliao_authorname,
-      "text"        => message
+      "authorName" => jianliao_authorname,
+      "text" => message
     }
 
     res = Net::HTTP.post_form(uri, payload)
