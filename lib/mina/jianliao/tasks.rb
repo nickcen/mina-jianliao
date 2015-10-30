@@ -46,22 +46,13 @@ namespace :jianliao do
   end
 
   def post_jianliao_message(message)
-    # Parse the URI and handle the https connection
-    uri = URI.parse(jianliao_url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    uri = URI('https://jianliao.com/v2/services/webhook/d797f4bacfb3c8a47490cbacc777ae974d41f210')
 
     payload = {
       "username"    => jianliao_authorname,
       "text"        => message
     }
 
-    # Create the post request and setup the form data
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data(:payload => payload.to_json)
-
-    # Make the actual request to the API
-    http.request(request)
+    res = Net::HTTP.post_form(uri, payload)
   end
 end
