@@ -1,7 +1,6 @@
 require 'mina/hooks'
 require 'json'
 require 'net/http'
-require 'openssl'
 
 # Before and after hooks for mina deploy
 before_mina :deploy, :'jianliao:starting'
@@ -45,7 +44,7 @@ namespace :jianliao do
   end
 
   def post_jianliao_message(message)
-    uri = URI('https://jianliao.com/v2/services/webhook/d797f4bacfb3c8a47490cbacc777ae974d41f210')
+    uri = URI(jianliao_url)
 
     payload = {
       "authorName" => jianliao_authorname,
